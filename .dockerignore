@@ -1,0 +1,12 @@
+.git
+.gitignore
+node_modules
+test
+tmp
+temp
+log
+logs
+yaml
+*.log
+*.logs
+*.yaml
