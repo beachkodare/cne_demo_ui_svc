@@ -1,4 +1,8 @@
-# 2023 10 23 CNE Demo UI Svc
+# Simple UI svc in express / hbs
 
-### Cool lightweight service for demonstration
+### Cool service for demonstration
+
+## GitHub Action
+    - uses stages
+    - publishes to Docker Hub
 
