@@ -7,7 +7,7 @@ on:
   #   branches: [ "main" ]
 
 jobs:
-  
+
   test:
     name: pull code and run tests for service
     runs-on: ubuntu-latest
