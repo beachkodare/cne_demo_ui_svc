@@ -1,12 +1,31 @@
 name: DockerHubDemo
 
 on:
-  [ workflow_dispatch ]
+  workflow_dispatch:
+    
   
-  # push:
-  #   branches: [ "main" ]
-
 jobs:
+
+  linter_code:
+    name: run linter on project code
+    runs-on: ubuntu-latest
+    permissions:
+       contents: read
+       packages: read
+       statuses: write
+      
+    steps:
+      - name: Checkout code for linting
+        uses: actions/checkout@4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Run super linter on checked out code
+        uses: super-linter/super-linter:slim-v5@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: ${{ github.head_ref || github.ref_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     name: pull code and run tests for service
@@ -63,8 +82,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
-          
+          push: true       
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
