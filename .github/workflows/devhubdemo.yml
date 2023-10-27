@@ -2,7 +2,8 @@ name: DockerHubDemo
 
 on:
   workflow_dispatch:
-    
+env:
+  branch_name: main
   
 jobs:
 
@@ -24,7 +25,7 @@ jobs:
         uses: super-linter/super-linter/slim@v5
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: ${{ github.head_ref || github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.head_ref || github.ref_name || env.branch_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
