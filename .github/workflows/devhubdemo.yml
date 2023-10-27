@@ -30,7 +30,8 @@ jobs:
   test:
     name: pull code and run tests for service
     runs-on: ubuntu-latest
-
+    needs: [linter_code]
+    
     steps:
 
       - name: Checkout source code
